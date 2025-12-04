@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <div class="erp-stat-card" style="max-width:420px; width:100%;">
+        <h4 class="mb-3">INNOMAX AI-ERP 회원가입</h4>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">아이디</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">비밀번호</label>
+                {{ form.password1 }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">비밀번호 확인</label>
+                {{ form.password2 }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">회원가입</button>
+        </form>
+        <hr>
+        <p class="small mb-0">
+            이미 계정이 있나요?
+            <a href="/login/">로그인 하러가기</a>
+        </p>
+    </div>
+</div>
+
+<style>
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 8px 10px;
+}
+</style>
+{% endblock %}

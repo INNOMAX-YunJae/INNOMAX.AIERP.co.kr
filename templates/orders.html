@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">신규 수주 → 자동 구매요청</h3>
+<p class="text-muted">
+도면 + BOM 업로드 → 이전PJ 재고·유사 프로젝트 재고 조회 → 부족 수량만 자동 발주.
+</p>
+
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>프로젝트</th>
+            <th>수주 번호</th>
+            <th>도면/BOM 상태</th>
+            <th>자동 생성 구매요청</th>
+            <th>비고</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for o in orders %}
+        <tr>
+            <td>{{ o.project }}</td>
+            <td>{{ o.order_no }}</td>
+            <td>{{ o.bom_status }}</td>
+            <td>{{ o.auto_pr_count }} 건</td>
+            <td>{{ o.note }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

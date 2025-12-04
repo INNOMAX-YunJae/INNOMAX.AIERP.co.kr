@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="erp-hero-card mb-4">
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge bg-light text-dark border">
+                    📊 AI-ERP
+                </span>
+                <span class="erp-hero-title">AI-ERP 메인 대시보드</span>
+            </div>
+            <p class="erp-hero-sub mb-0">
+                재고 현황 · AI 자동 구매요청 · 도면 분석 결과를 한눈에 확인합니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- 카드 1 : 재고 현황 -->
+    <div class="col-md-4">
+        <div class="erp-stat-card h-100">
+            <div class="erp-stat-label mb-1">재고 현황</div>
+            <p class="mb-1 small text-muted">현재 반입재고:</p>
+            <div class="erp-stat-value mb-0">128건</div>
+        </div>
+    </div>
+
+    <!-- 카드 2 : AI 자동 구매요청 -->
+    <div class="col-md-4">
+        <div class="erp-stat-card h-100">
+            <div class="erp-stat-label mb-1">AI 자동 구매요청</div>
+            <p class="mb-1 small text-muted">오늘 자동 생성된 요청:</p>
+            <div class="erp-stat-value mb-0">{{ auto_pr_today }} 건</div>
+        </div>
+    </div>
+
+    <!-- 카드 3 : 도면 분석 결과 -->
+    <div class="col-md-4">
+        <div class="erp-stat-card h-100">
+            <div class="erp-stat-label mb-1">도면 분석 결과</div>
+            <p class="mb-1 small text-muted">확인 필요 항목:</p>
+            <div class="erp-stat-value mb-0">{{ drawing_risk_alerts }} 건</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

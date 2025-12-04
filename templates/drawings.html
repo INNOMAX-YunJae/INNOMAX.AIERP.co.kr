@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">도면 문제점 자동 분석</h3>
+<p class="text-muted">
+이전PJ 트러블 리포트와 유사 패턴을 매칭하여, 위험 가능성이 높은 도면 포인트를 보여줍니다.
+</p>
+
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>도면 번호</th>
+            <th>위험 레벨</th>
+            <th>AI 코멘트</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in drawings %}
+        <tr>
+            <td>{{ d.drawing_no }}</td>
+            <td>{{ d.risk_level }}</td>
+            <td>{{ d.comment }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>INNOMAX AI-ERP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 아이콘 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --erp-primary: #2563eb;
+            --erp-bg: #e5e7eb;
+            --erp-sidebar-bg: #020617;
+            --erp-sidebar-text: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--erp-bg);
+        }
+
+        .erp-layout {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* 왼쪽 사이드바 */
+        .erp-sidebar {
+            width: 230px;
+            background: var(--erp-sidebar-bg);
+            color: var(--erp-sidebar-text);
+            padding: 20px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .erp-sidebar-brand {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.02em;
+        }
+
+        .erp-nav {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .erp-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--erp-sidebar-text);
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 10px;
+            opacity: 0.85;
+        }
+
+        .erp-nav a:hover {
+            background-color: rgba(148, 163, 184, 0.2);
+            opacity: 1;
+        }
+
+        .erp-nav a .bi {
+            font-size: 16px;
+        }
+
+        /* 오른쪽 메인 영역 */
+        .erp-main {
+            flex: 1;
+            padding: 20px 24px;
+        }
+
+        .erp-main-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 카드 스타일 */
+        .erp-hero-card {
+            background: #f9fafb;
+            border-radius: 18px;
+            padding: 18px 22px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .erp-stat-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 18px 20px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+        }
+
+        .erp-hero-title {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .erp-hero-sub {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .erp-stat-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .erp-stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .erp-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="erp-layout">
+    <!-- 왼쪽 사이드바 -->
+    <aside class="erp-sidebar">
+<div class="erp-sidebar-brand mb-2">
+    <img src="{% static 'logo/innomax.png' %}" alt="INNOMAX" height="42">
+</div>
+
+<ul class="erp-nav">
+    <li><a href="/inventory/"><i class="bi bi-box-seam"></i> 재고 현황</a></li>
+    <li><a href="/orders/"><i class="bi bi-bag-check"></i> 구매요청 자동작성</a></li>
+    <li><a href="/drawings/"><i class="bi bi-vector-pen"></i> 도면 분석</a></li>
+    <li><a href="/ai/insights/"><i class="bi bi-journal-text"></i> 트러블로그</a></li>
+    <li><a href="/"><i class="bi bi-bar-chart-line"></i> 대시보드</a></li>
+    <li><a href="/ai/insights/"><i class="bi bi-lightning-charge"></i> AI 작업도우미</a></li>
+
+    <li><hr style="border-color: rgba(148,163,184,0.4); margin: 8px 0;"></li>
+
+    {% if user.is_authenticated %}
+        <li><a href="/logout/"><i class="bi bi-box-arrow-right"></i> 로그아웃</a></li>
+    {% else %}
+        <li><a href="/login/"><i class="bi bi-box-arrow-in-right"></i> 로그인</a></li>
+        <li><a href="/signup/"><i class="bi bi-person-plus"></i> 회원가입</a></li>
+    {% endif %}
+</ul>
+    </aside>
+
+    <!-- 오른쪽 메인 -->
+    <main class="erp-main">
+        <div class="erp-main-inner">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">AI 인사이트</h3>
+<p class="text-muted">
+트러블 리포트, 재고 패턴, 도면 특징을 종합하여 리스크와 의사결정 제안을 제공합니다.
+</p>
+
+<ul class="list-group">
+    {% for i in insights %}
+    <li class="list-group-item">
+        <strong>{{ i.title }}</strong><br>
+        <small class="text-muted">{{ i.category }}</small>
+        <p class="mb-0 mt-1 small">{{ i.detail }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

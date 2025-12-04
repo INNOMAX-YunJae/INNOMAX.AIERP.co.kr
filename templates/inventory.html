@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">이전PJ 반입재고 자동 파악</h3>
+<p class="text-muted">
+이전 프로젝트의 자재 이력 + 반입자재 기록 + AI 사용량 패턴으로 “남은 재고 예상”을 제공합니다.
+</p>
+
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>자재코드</th>
+            <th>품명</th>
+            <th>이전PJ 반입수량</th>
+            <th>예상 현재수량(AI)</th>
+            <th>비고</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.code }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.returned_qty }}</td>
+            <td>{{ item.predicted_qty }}</td>
+            <td>{{ item.note }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
